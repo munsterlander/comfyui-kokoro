@@ -217,7 +217,7 @@ class KokoroGenerator:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "text": ("STRING", {}),
+                "text": ("STRING", {"multiline": True}),
                 "speaker": ("KOKORO_SPEAKER", ),
                 "speed": ("FLOAT", {"default": 1, "min": 0.1, "max": 4, "step": 0.05}),
                 "lang": (
