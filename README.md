@@ -11,6 +11,10 @@ Kokoro TTS nodes, wrapping this [kokoro onnx](https://github.com/thewh1teagle/ko
 
 **note**: This picture is also a workflow, just download and drop it into comfy.
 
+## Fork Notes
+
+This was forked to incorporate the pull request that has still been hanging on the source repo as well as make the node where text can be fed for generation for use in complex workflows and subgraphs.
+
 ## Install
 
 Install Via ComfyUI Manager, by `stavsap`.
