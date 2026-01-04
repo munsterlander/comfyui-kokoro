@@ -6,11 +6,13 @@ import os
 import requests
 from tqdm import tqdm
 import io
+import folder_paths
 
 logger = logging.getLogger(__name__)
 
 MODEL_URL = "https://github.com/taylorchu/kokoro-onnx/releases/download/v0.2.0/kokoro.onnx"
 MODEL_FILENAME = "kokoro_v1.onnx"
+MODEL_SUBDIR = "onnx/tts/kokoro"
 VOICES_FILENAME = "voices_v1.bin"
 
 supported_languages_display = ["English", "English (British)","French", "Japanese", "Hindi", "Mandarin Chinese", "Spanish", "Brazilian Portuguese", "Italian"]
@@ -155,7 +157,8 @@ class KokoroSpeaker:
 
     def __init__(self):
         self.kokoro = None
-        self.node_dir = os.path.dirname(os.path.abspath(__file__))
+        # self.node_dir = os.path.dirname(os.path.abspath(__file__))
+        self.node_dir = os.path.join(folder_paths.models_dir, MODEL_SUBDIR)
         self.voices_path = os.path.join(self.node_dir, VOICES_FILENAME)
         self.model_path = os.path.join(self.node_dir, MODEL_FILENAME)
 
@@ -190,7 +193,8 @@ class KokoroSpeakerCombiner:
 
     def __init__(self):
         self.kokoro = None
-        self.node_dir = os.path.dirname(os.path.abspath(__file__))
+        # self.node_dir = os.path.dirname(os.path.abspath(__file__))
+        self.node_dir = os.path.join(folder_paths.models_dir, MODEL_SUBDIR)
         self.voices_path = os.path.join(self.node_dir, VOICES_FILENAME)
         self.model_path = os.path.join(self.node_dir, MODEL_FILENAME)
 
@@ -213,7 +217,7 @@ class KokoroGenerator:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "text": ("STRING", {"multiline": True, "default": "I am a synthesized robot"}),
+                "text": ("STRING", {}),
                 "speaker": ("KOKORO_SPEAKER", ),
                 "speed": ("FLOAT", {"default": 1, "min": 0.1, "max": 4, "step": 0.05}),
                 "lang": (
@@ -233,7 +237,8 @@ class KokoroGenerator:
 
     def __init__(self):
         self.kokoro = None
-        self.node_dir = os.path.dirname(os.path.abspath(__file__))
+        # self.node_dir = os.path.dirname(os.path.abspath(__file__))
+        self.node_dir = os.path.join(folder_paths.models_dir, MODEL_SUBDIR)
         self.model_path = os.path.join(self.node_dir, MODEL_FILENAME)
         self.voices_path = os.path.join(self.node_dir, VOICES_FILENAME)
 
